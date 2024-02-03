@@ -1,0 +1,14 @@
+Python 3.12
+DateTime	5.4
+certifi	2024.2.2
+charset-normalizer	3.3.2
+colorama	0.4.6
+configparser	6.0.0
+idna	3.6
+pip	23.3.2
+pytz	2024.1
+requests	2.31.0
+setuptools	69.0.3
+tqdm	4.66.1
+urllibS	2.2.0
+zope.interface	6.1
