@@ -33,7 +33,7 @@ class VK:
 
     """Метод для получения информации фотографий на стене в VK """    
     def get_profile_photos(self):
-        params = {'owner.id': self.id, 'album_id': 'wall', 'extended': '1'}
+        params = {'owner_id': self.id, 'album_id': 'wall', 'extended': '1', 'count': '5'} # Photos default: 5
         response = requests.get('https://api.vk.com/method/photos.get', params={**self.params, **params})
         photos_sizes_list = response.json()['response']
         return photos_sizes_list['count'], photos_sizes_list['items']
@@ -61,7 +61,7 @@ class VK:
         picture_dict = self.get_logs_only()
         for key, value in picture_dict.items():
             if len(value) == 1:
-                file_name = f'{value[0]['likes_count']}.jpeg'
+                file_name = f'{value[0]["likes_count"]}.jpeg'
                 json_list.append({'file name': file_name, 'size': value[0]['size']})
                 sorted_dict[file_name] = picture_dict[key][0]['url_picture']
             else:
