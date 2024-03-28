@@ -2,7 +2,6 @@ from typing import Iterable
 
 import psycopg2
 
-
 class Clients:
     
     def __init__(self, db, user, password, host) -> None:

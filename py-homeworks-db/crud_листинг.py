@@ -1,6 +1,8 @@
 import psycopg2
 
 
+
+
 with psycopg2.connect(database="netology_db", user="postgres", password="postgres") as conn:
     with conn.cursor() as cur:
         # удаление таблиц
