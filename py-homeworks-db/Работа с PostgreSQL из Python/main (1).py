@@ -1,9 +1,9 @@
 import psycopg2
-from db_services import DBservice
+import DBService
 
 
 
-service = DBservice()
+service = DBService()
 
 def create_database(connection):
     """Функция, создающая структуру БД (таблицы)"""
@@ -107,8 +107,8 @@ def search_client(connection, first_name=None, last_name=None, email=None, phone
         print(result)
 
 
-with psycopg2.connect(database = 'netology_db', user = 'postgres', password = 'postgres') as conn:
-    create_database(conn)
+with psycopg2.connect("dbname=postgres user=postgres password=postgres") as connect:
+    create_database(connect)
     # append_client(conn, 'Влад', 'Владов', 'vlad@mail.ru', '88888888888')
     # append_client(conn, 'Сергей', 'Сергеев', 'petrov@mail.ru', '897777777777')
     # append_client(conn, 'Александр', 'Иванов', 'ali@mail.ru', '86666666666')

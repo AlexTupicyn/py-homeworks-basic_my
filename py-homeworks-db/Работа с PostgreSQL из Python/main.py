@@ -11,13 +11,13 @@ class Clients:
             'password': password,
             'host': host
         }
-        self.conn = psycopg2.connect(**self.conn_props)
-        self.cur = self.conn.cursor()
+        self.connect = psycopg2.connect(**self.conn_props)
+        self.cur = self.connect.cursor()
 
-    def __del__(self):
-        self.cur.close()
-        self.conn.close()
-    
+    # def __del__(self):
+    #     self.cur.close()
+    #     self.conn.close()
+    #
 
     # Функция, создающая структуру БД (таблицы).
     def create_db(self):
@@ -40,7 +40,7 @@ class Clients:
             );
         """)
 
-        self.conn.commit()
+        self.connect.commit()
 
     # Функция, позволяющая добавить нового клиента
     def add_client(self, first_name, last_name, email=None, phones=None):
@@ -58,11 +58,11 @@ class Clients:
                 for phone in phones:
                     self.add_phone(client_id, phone)
 
-            self.conn.commit()
+            self.connect.commit()
 
         except psycopg2.errors.CheckViolation:
             print('Возникла ошибка при добавлении клиента. Проверьте введеныне данные и повторите попытку.')
-            self.conn.rollback()
+            self.connect.rollback()
             return
 
         return client_id
@@ -77,10 +77,10 @@ class Clients:
                 (client_id, phone)
             )
             if do_commit:
-                self.conn.commit()
+                self.connect.commit()
         except psycopg2.errors.CheckViolation:
             print('Возникла ошибка при добавлении телефона. Проверьте введеныне данные и повторите попытку.')
-            self.conn.rollback()
+            self.connect.rollback()
 
     # Функция, позволяющая изменить данные о клиенте
     def change_client(self, client_id, first_name=None, last_name=None, email=None, phones=None):
@@ -122,7 +122,7 @@ class Clients:
             for phone in phones:
                 self.add_phone(client_id, phone)
 
-            self.conn.commit()
+            self.connect.commit()
 
     # Функция, позволяющая удалить телефон для существующего клиента
     def delete_phone(self, client_id, phone):
@@ -134,7 +134,7 @@ class Clients:
             """,
             (client_id, phone)
         )
-        self.conn.commit()
+        self.connect.commit()
     
 
     # Функция, позволяющая удалить существующего клиента
@@ -151,7 +151,7 @@ class Clients:
             """,
             (client_id,)
         )
-        self.conn.commit()
+        self.connect.commit()
 
     # Функция, позволяющая найти клиента по его данным: имени, фамилии, email или телефону
     def find_client(self, first_name=None, last_name=None, email=None, phone=None):
@@ -186,7 +186,7 @@ class Clients:
 
 
 if __name__ == '__main__':
-    client_db = Clients('<database>', '<username>', '<user password>', '<host>')
+    client_db = Clients('postgres', 'postgres', 'postgres', '127.0.0.1')
     
     # создание структуры базы данных
     client_db.create_db()
