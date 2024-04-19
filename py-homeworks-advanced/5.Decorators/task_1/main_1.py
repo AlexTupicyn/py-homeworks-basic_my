@@ -28,7 +28,9 @@ def logger(file_name):
                 file.write(writing_to_file)
 
             return result
+
         return new_function
+
     return decorator
 
 
