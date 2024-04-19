@@ -1,0 +1,10 @@
+Дата вызова функции: 19.04.2024
+Время вызова функции: 19:40:50.815017
+Имя функции: gen_fake_headers
+Аргументы функции: () and {}
+результат выполнения функции: {'Accept': '*/*', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729 Safari/537.36'}
+Дата вызова функции: 19.04.2024
+Время вызова функции: 19:41:41.803602
+Имя функции: gen_fake_headers
+Аргументы функции: () and {}
+результат выполнения функции: {'Accept': '*/*', 'Connection': 'keep-alive', 'User-Agent': 'Mozilla/5.0 (Windows NT 6.2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36'}
